@@ -1,10 +1,14 @@
-import React from 'react';
+import React from "react";
 import "./../../globals.css";
-const Card = ({ item }) => {
+
+const Card = ({ items }) => {
+  if (!items) {
+    return null;
+  }
+
   return (
-    <div>
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-28 mx-16">
-      {item.map((val) => (
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 my-8 mx-16">
+      {items.map((val) => (
         <div
           key={val.id}
           className="bg-white rounded-lg shadow-md overflow-hidden m-2 hover:shadow-2xl"
@@ -20,9 +24,7 @@ const Card = ({ item }) => {
             <h2 className="text-lg font-semibold mb-2 text-center">
               {val.name}
             </h2>
-            <div className="text-gray-600 text-center">
-              {val.description}
-            </div>
+            <div className="text-gray-600 text-center">{val.description}</div>
           </div>
           <div className="px-6 py-4 text-center border-t border-gray-200">
             <a
@@ -35,10 +37,8 @@ const Card = ({ item }) => {
         </div>
       ))}
     </div>
-    </div>
   );
 };
 
 export default Card;
-
 

@@ -1,4 +1,3 @@
-// Le reste de votre fichier reste inchangé
 import type { Metadata } from "next";
 import "./globals.css";
 

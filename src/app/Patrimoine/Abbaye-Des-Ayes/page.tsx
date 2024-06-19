@@ -2,10 +2,9 @@
 import React from "react";
 import Header from "../../../app/includes/Header";
 import Footer from "@/app/includes/Footer";
-import { Component } from "@/app/components/Carousels/Carousel-Abbaye";
+import { ComponentAbbaye } from "@/app/components/Carousels/Carousel-Abbaye";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faXmark } from "@fortawesome/free-solid-svg-icons";
-import DataPatrimoine from "@/app/components/data/DataPatrimoine";
 function App() {
   return (
     <>
@@ -47,12 +46,17 @@ function App() {
             </div>
           </section>
 
-          <div className="flex justify-center items-center my-10">
-            <img
-              src="/images/Abbaye-des-Ayes/1.jpg"
-              alt="Abbaye des Ayes"
-              className="w-2/5 object-contain"
-            />
+          <div className="my-10">
+            <figure className="flex flex-col items-center justify-center">
+              <img
+                src="/images/Abbaye-des-Ayes/1.jpg"
+                alt="Abbaye des Ayes"
+                className={`w-[80%] sm:w-[90%] lg:w-2/5 object-contain rounded-lg`}
+              />
+              <figcaption className="text-center text-zinc-500 text-sm italic mt-2">
+                Abbaye des Ayes,façade sud. Cliché V.Valenza
+              </figcaption>
+            </figure>
           </div>
 
           <section className="sm:mx-8 md:mx-4 lg:mx-32 mb-8">
@@ -142,7 +146,7 @@ function App() {
           </div>
 
           <div>
-            <Component />
+            <ComponentAbbaye />
           </div>
           <section className="sm:mx-8 md:mx-4 lg:mx-32 my-8">
             <h2 className="text-2xl font-bold sm:mx-10 md:mx-4 lg:mx-32 mb-4 underline">
@@ -152,9 +156,9 @@ function App() {
               <span className="italic first-line ">
                 Trois abbayes de cisterciennes en Dauphiné du XIIe siècle à la
                 Révolution,
-              </span>{" "}
+              </span>
               Marie-Renée Michel, OPUS Edition. Consultable au service
-              patrimoine de la commune de Crolles <br /> <br />*{" "}
+              patrimoine de la commune de Crolles <br /> <br />*
               <a
                 href="https://fr.wikipedia.org/wiki/Ordre_cistercien"
                 className="font-medium text-blue-600 dark:text-blue-500 hover:underline"

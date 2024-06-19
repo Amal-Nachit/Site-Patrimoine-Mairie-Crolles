@@ -5,15 +5,11 @@ const ThemeFilter = ({ themeItems, filterTheme, setItems, selectedThemes }) => {
   const [activeFilters, setActiveFilters] = useState([]);
 
   const handleFilterClick = (filterValue) => {
-    // Vérifie si le filtre est déjà actif
     const isCurrentlyActive = activeFilters.includes(filterValue);
-    // Ajoute ou supprime le filtre de la liste des filtres actifs
     const updatedFilters = isCurrentlyActive
       ? activeFilters.filter((filter) => filter !== filterValue)
       : [...activeFilters, filterValue];
-    // Met à jour l'état des filtres actifs
     setActiveFilters(updatedFilters);
-    // Applique le filtre
     filterTheme(filterValue);
   };
 

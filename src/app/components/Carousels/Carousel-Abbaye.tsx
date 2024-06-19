@@ -3,18 +3,50 @@
 import { faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 
-export function Component() {
+export function ComponentAbbaye() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
-    "/images/Abbaye-des-Ayes/2.jpg",
-    "/images/Abbaye-des-Ayes/3.jpg",
-    "/images/Abbaye-des-Ayes/4.jpg",
-    "/images/Abbaye-des-Ayes/5.jpg",
-    "/images/Abbaye-des-Ayes/6.jpg",
-    "/images/Abbaye-des-Ayes/7.jpg",
-    "/images/Abbaye-des-Ayes/8.jpg",
+    {
+      src: "/images/Abbaye-des-Ayes/2.jpg",
+      alt: "Blason Abbaye",
+      legend: "Blason Abbaye",
+    },
+    {
+      src: "/images/Abbaye-des-Ayes/3.jpg",
+      alt: "Escalier façade nord-ouest",
+      legend: "Escalier façade nord-ouest",
+    },
+    {
+      src: "/images/Abbaye-des-Ayes/4.jpg",
+      alt: "Façade nord-est",
+      legend: "Façade nord-est",
+    },
+    {
+      src: "/images/Abbaye-des-Ayes/5.jpg",
+      alt: "Abbaye, façade sud. Cliché V. Valenza",
+      legend: "Abbaye, façade sud. Cliché V. Valenza",
+    },
+    {
+      src: "/images/Abbaye-des-Ayes/6.jpg",
+      alt: "Chapiteau Abbaye des Ayes, coll. Musée dauphinois . V.Valenza",
+      legend: "Chapiteau Abbaye des Ayes, coll. Musée dauphinois . V.Valenza",
+    },
+    {
+      src: "/images/Abbaye-des-Ayes/7.jpg",
+      alt: "Chapiteau Abbaye des Ayes, coll. Musée dauphinois . V.Valenza",
+      legend: "Chapiteau Abbaye des Ayes, coll. Musée dauphinois . V.Valenza",
+    },
+    {
+      src: "/images/Abbaye-des-Ayes/8.jpg",
+      alt: "Intérieur, cliché H. Müller, coll. Musée dauphinois",
+      legend: "Intérieur, cliché H. Müller, coll. Musée dauphinois",
+    },
+    {
+      src: "/images/Abbaye-des-Ayes/9.png",
+      alt: "Reconstitution du plan de l'Abbaye des Ayes, dessin G. Fort",
+      legend: "Reconstitution du plan de l'Abbaye des Ayes, dessin G. Fort",
+    },
   ];
 
   useEffect(() => {
@@ -41,17 +73,18 @@ export function Component() {
       {/* Structure pour une image avec ses boutons */}
       <div className="relative w-1/2 sm:w-1/2 xl:w-1/2 2xl:w-1/2">
         {/* Conteneur pour l'image centrée */}
-        <div className="flex justify-center items-center h-full">
+        <div className="flex flex-col justify-center h-full">
+          <figcaption className="text-center text-l italic mb-2  ">{slides[currentSlide].legend}</figcaption>
           {/* Image avec taille fixe */}
           <img
-            src={slides[currentSlide]}
-            alt={`Slide ${currentSlide + 1}`}
-            className="h-[400px] w-[700px] object-cover rounded-lg"
+            src={slides[currentSlide].src}
+            alt={slides[currentSlide].alt}
+            className="h-[400px] w-[800px] object-contain rounded-lg mb-2"
           />
         </div>
 
         {/* Conteneur pour les boutons centrés en bas */}
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex justify-center space-x-4 p-4">
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex justify-center space-x-4 pb-10">
           {/* Bouton précédent */}
           <button
             onClick={handlePrevClick}
@@ -72,3 +105,5 @@ export function Component() {
     </div>
   );
 }
+
+

@@ -25,7 +25,7 @@ const Header = () => {
           </div>
           <div className="hidden md:flex items-center justify-center">
             <h1 className="text-gray-50 font-semibold text-3xl">
-              Patrimoine Ville de Crolles
+              Patrimoine de la ville de Crolles
             </h1>
           </div>
           <div className="flex items-center justify-end">

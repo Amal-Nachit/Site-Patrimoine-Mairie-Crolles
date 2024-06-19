@@ -4,15 +4,11 @@ const EpoqueFilter = ({ epoqueItems, filterEpoque, setItems}) => {
   const [activeFilters, setActiveFilters] = useState([]);
 
   const handleFilterClick = (filterValue) => {
-    // Vérifie si le filtre est déjà actif
     const isCurrentlyActive = activeFilters.includes(filterValue);
-    // Ajoute ou supprime le filtre de la liste des filtres actifs
     const updatedFilters = isCurrentlyActive
       ? activeFilters.filter((filter) => filter !== filterValue)
       : [...activeFilters, filterValue];
-    // Met à jour l'état des filtres actifs
     setActiveFilters(updatedFilters);
-    // Applique le filtre
     filterEpoque(filterValue);
   };
   return (

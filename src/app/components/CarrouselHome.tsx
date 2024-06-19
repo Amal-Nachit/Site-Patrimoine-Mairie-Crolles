@@ -1,0 +1,79 @@
+"use client";
+
+import { faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState, useEffect } from "react";
+export function ComponentHome() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = [
+    "/images/images-carousel-home/1.jpg",
+    "/images/images-carousel-home/2.jpg",
+    "/images/images-carousel-home/3.jpg",
+    "/images/images-carousel-home/4.jpg",
+    "/images/images-carousel-home/5.jpg",
+    "/images/images-carousel-home/6.jpg",
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleNextClick = () => {
+    setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
+  };
+
+  const handlePrevClick = () => {
+    setCurrentSlide(
+      (prevIndex) => (prevIndex - 1 + slides.length) % slides.length
+    );
+  };
+
+  return (
+    <div className="flex justify-center items-center">
+      {/* Structure pour une image avec ses boutons */}
+      <div className="relative w-full">
+        {/* Conteneur pour l'image centrée */}
+        <div className="flex h-full items-center justify-center">
+          {/* Image avec taille fixe */}
+          <div className="absolute top-0 left-0 w-full h-full">
+            <img
+              src={slides[currentSlide]}
+              alt={`Slide ${currentSlide + 1}`}
+              className="h-[90vh] w-[100vw] object-cover blur-sm"
+            />
+          </div>
+          <div className="relative w-full h-full">
+            <img
+              src={slides[currentSlide]}
+              alt={`Slide ${currentSlide + 1}`}
+              className="h-[90vh] w-[100vw] object-contain "
+            />
+          </div>
+        </div>
+        {/* Conteneur pour les boutons centrés en bas */}
+        <div className="absolute top-1/2 right-0 transform -translate-y-1/2 flex items-center space-x-4 p-4">
+          {/* Bouton suivant */}
+          <button
+            onClick={handleNextClick}
+            className="bg-gray-200 hover:bg-green-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out"
+          >
+            <FontAwesomeIcon icon={faAnglesRight} />
+          </button>
+        </div>
+        <div className="absolute top-1/2 left-0 transform -translate-y-1/2 flex items-center space-x-4 p-4">
+          {/* Bouton précédent */}
+          <button
+            onClick={handlePrevClick}
+            className="bg-gray-200 hover:bg-green-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out"
+          >
+            <FontAwesomeIcon icon={faAnglesLeft} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

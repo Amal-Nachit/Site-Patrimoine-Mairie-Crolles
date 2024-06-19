@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import "./globals.css";
 import Header from "../app/includes/Header";
 import Footer from "./includes/Footer";
-import Card from "./components/data/CardPatrimoine";
-import AccessFilter from "./components/filters/AccessFilter";
-import ThemeFilter from "./components/filters/ThemeFilter";
-import EpoqueFilter from "./components/filters/EpoqueFilter";
 import DataPatrimoine from "./components/data/DataPatrimoine";
+import { ComponentHome } from "./components/CarrouselHome";
+import CombinedFilter from "./components/filters/Filters";
 
 function App() {
   const [items, setItems] = useState(DataPatrimoine);
@@ -69,8 +67,11 @@ function App() {
   return (
     <div className="bg-white">
       <Header />
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-gray-100 p-4 md:col-span-1">
+      <div>
+        <ComponentHome />
+      </div>
+      {/* <div className="grid grid-cols-1 md:grid-cols-5 gap-4"> */}
+        {/* <div className="bg-gray-100 p-4 md:col-span-1">
           <h3 className="text-2xl font-semibold mt-8">
             Accessible au public :
           </h3>
@@ -99,11 +100,13 @@ function App() {
             selectedEpoques={selectedEpoques}
             newSelectedThemes={selectedThemes}
           />
+          <Filters />
+        </div> */}
+          
+        <div>
+          <CombinedFilter items={items} />
         </div>
-        <div className="md:col-span-4">
-          <Card item={items} />
-        </div>
-      </div>
+      {/* </div> */}
       <Footer />
     </div>
   );

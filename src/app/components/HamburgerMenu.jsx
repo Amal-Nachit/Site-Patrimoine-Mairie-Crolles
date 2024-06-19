@@ -54,8 +54,8 @@ export const HamburgerMenu = () => {
   };
 
   return (
-    <div className="relative" ref={menuRef}>
-      <div className="sticky z-20 ml-3">
+    <div className="relative z-50" ref={menuRef}>
+      <div className="sticky ml-3">
         <div className="flex items-center cursor-pointer" onClick={toggleOpen}>
           <Hamburger toggled={open} color="#fff" />
           <h2 className="ml-1 font-arial text-white text-2xl">MENU</h2>
@@ -113,7 +113,7 @@ export const HamburgerMenu = () => {
           >
             {patrimoineList.map((item) => (
               <a
-                href={`/Patrimoine/${item.url}`}
+                href={`/${item.url}`}
                 style={{ color: "#333", textDecoration: "none" }}
               >
                 <li
