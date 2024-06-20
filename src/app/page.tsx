@@ -1,116 +1,66 @@
 "use client";
-import React, { useState } from "react";
-import "./globals.css";
+
+import React, { useEffect, useRef, useState } from "react";
+import "./globals.css"; // Assurez-vous que Tailwind est configuré ici
 import Header from "../app/includes/Header";
 import Footer from "./includes/Footer";
 import DataPatrimoine from "./components/data/DataPatrimoine";
 import { ComponentHome } from "./components/CarrouselHome";
 import CombinedFilter from "./components/filters/Filters";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-function App() {
-  const [items, setItems] = useState(DataPatrimoine);
-  const [selectedThemes, setSelectedThemes] = useState([]);
-  const [selectedEpoques, setSelectedEpoques] = useState([]);
-  const accessItems = [
-    ...Array.from(new Set(DataPatrimoine.map((val) => val.accessibilite))),
-  ];
+const scrollAt = 600;
 
-  const filterAccess = (accessItem: string) => {
-    const newItems = DataPatrimoine.filter(
-      (newval) => newval.accessibilite === accessItem
-    );
-    setItems(newItems);
+const App = () => {
+  const scrollToFilterRef = useRef(null);
+  const [shouldShowScroll, setShouldShowScroll] = useState(true);
+
+  const handleScroll = () => {
+    if (window.scrollY > scrollAt) {
+      setShouldShowScroll(false);
+    } else {
+      setShouldShowScroll(true);
+    }
   };
 
-  const themeItems = Array.from(
-    new Set(
-      DataPatrimoine.flatMap((item) =>
-        Array.isArray(item.theme) ? item.theme : [item.theme]
-      )
-    )
-  );
- const filterTheme = (themeItem: string) => {
-   const newSelectedThemes =
-     selectedThemes.includes(themeItem)
-       ? selectedThemes.filter((theme) => theme !== themeItem)
-       : [...selectedThemes, themeItem];
-   const newItems = DataPatrimoine.filter((newval) =>
-     Array.isArray(newval.theme)
-       ? newval.theme.some((theme) => newSelectedThemes.includes(theme))
-       : newSelectedThemes.includes(newval.theme)
-   );
-   setItems(newItems);
-   setSelectedThemes(newSelectedThemes);
- };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-  const filterEpoque = (epoqueItem: string) => {
-    const newSelectedEpoques =
-      selectedEpoques.includes(epoqueItem)
-        ? selectedEpoques.filter((epoque) => epoque !== epoqueItem)
-        : [...selectedEpoques, epoqueItem];
-    const newItems = DataPatrimoine.filter((newval) =>
-      Array.isArray(newval.epoque)
-        ? newval.epoque.some((epoque) => newSelectedEpoques.includes(epoque))
-        : newSelectedEpoques.includes(newval.epoque)
-    );
-    setItems(newItems);
-    // setSelectedEpoques(newSelectedEpoques);
+  const scrollToFilter = () => {
+    if (scrollToFilterRef.current) {
+      scrollToFilterRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
-  const epoqueItems = Array.from(
-    new Set(
-      DataPatrimoine.flatMap((item) =>
-        Array.isArray(item.epoque) ? item.epoque : [item.epoque]
-      )
-    )
-  );
 
   return (
     <div className="bg-white">
       <Header />
+
       <div>
         <ComponentHome />
+        {shouldShowScroll && (
+          <button
+            className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-orange-200 hover:bg-orange-300 text-black font-bold py-3 px-4 rounded-full bg-opacity-50"
+            onClick={scrollToFilter}
+          >
+            <FontAwesomeIcon icon={faChevronDown} size="2x"/>
+          </button>
+        )}
       </div>
-      {/* <div className="grid grid-cols-1 md:grid-cols-5 gap-4"> */}
-        {/* <div className="bg-gray-100 p-4 md:col-span-1">
-          <h3 className="text-2xl font-semibold mt-8">
-            Accessible au public :
-          </h3>
-          <AccessFilter
-            accessItems={accessItems}
-            filterAccess={filterAccess}
-            setItems={setItems}
-          />
-          <h3 className="text-2xl font-semibold mt-8">Thèmes :</h3>
-          <ThemeFilter
-            {...{
-              themeItems,
-              filterTheme,
-              setSelectedThemes,
-              selectedThemes,
-              setItems,
-              selectedItems: items,
-              newSelectedEpoques: selectedEpoques,
-            }}
-          />
-          <h3 className="text-2xl font-semibold mt-8">Epoques :</h3>
-          <EpoqueFilter
-            filterEpoque={filterEpoque}
-            epoqueItems={epoqueItems}
-            setItems={setItems}
-            selectedEpoques={selectedEpoques}
-            newSelectedThemes={selectedThemes}
-          />
-          <Filters />
-        </div> */}
-          
-        <div>
-          <CombinedFilter items={items} />
-        </div>
-      {/* </div> */}
+
+      <div ref={scrollToFilterRef}>
+        <CombinedFilter />
+      </div>
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
+
 

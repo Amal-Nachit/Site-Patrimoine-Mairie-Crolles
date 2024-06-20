@@ -116,7 +116,7 @@ const CombinedFilter = () => {
       </div>
 
       {/* Filtres */}
-      <div className="bg-gray-100 p-4 md:col-span-1">
+      <div className="bg-gray-100 p-4 md:col-span-1 pt-16">
         <h3 className="text-lg font-semibold mb-4">Filtre d'accès</h3>
         {accessItems.map((val) => (
           <button
