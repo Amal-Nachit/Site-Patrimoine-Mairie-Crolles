@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Head from "next/head";
 
 export const metadata: Metadata = {
-  title: "Patrimoine",
+  title: "Patrimoine de Crolles",
   description: "",
 };
 
@@ -13,11 +14,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <head>
+      
+      <Head>
+        <link rel="shortcut icon" href="/images/favicon.ico" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="manifest" href="/manifest.json"></link>
-      </head>
-      <body>{children}</body>
+        <link rel="manifest" href="/manifest.json"></link>  
+      </Head>
+      <body className="font-arial">{children}</body>
     </html>
   );
 }

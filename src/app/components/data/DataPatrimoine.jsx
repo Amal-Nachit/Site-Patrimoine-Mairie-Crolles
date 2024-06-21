@@ -7,7 +7,7 @@ const DataPatrimoine = [
     image: "/images/Abbaye-des-Ayes/1.jpg",
     accessibilite: "Non",
     epoque: ["Moyen-Âge", "Moderne"],
-    theme: ["Architecture", "Religieux"],
+    theme: ["Architecture", "Religion"],
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const DataPatrimoine = [
     image: "/images/Ancien-Couvent/1.jpg",
     accessibilite: "Non",
     epoque: "Contemporaine",
-    theme: ["Architecture", "Religieux", "Éducation"],
+    theme: ["Architecture", "Religion", "Éducation"],
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const DataPatrimoine = [
     image: "/images/Vitraux/1.jpg",
     accessibilite: "Non",
     epoque: "Moyen-Âge",
-    theme: ["Architecture", "Religieux"],
+    theme: ["Architecture", "Religion"],
   },
   {
     id: 4,
@@ -117,7 +117,7 @@ const DataPatrimoine = [
     image: "/images/Cure/1.jpg",
     accessibilite: "Oui",
     epoque: "Moderne",
-    theme: ["Architecture", "Religieux"],
+    theme: ["Architecture", "Religion"],
   },
   {
     id: 13,
@@ -127,7 +127,7 @@ const DataPatrimoine = [
     image: "/images/Eglise/1.jpg",
     accessibilite: "Oui",
     epoque: ["Moyen-Âge", "Moderne"],
-    theme: ["Architecture", "Religieux"],
+    theme: ["Architecture", "Religion"],
   },
   {
     id: 14,

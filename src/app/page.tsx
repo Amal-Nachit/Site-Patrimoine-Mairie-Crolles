@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import "./globals.css"; // Assurez-vous que Tailwind est configuré ici
+import "./globals.css";
 import Header from "../app/includes/Header";
 import Footer from "./includes/Footer";
-import DataPatrimoine from "./components/data/DataPatrimoine";
 import { ComponentHome } from "./components/CarrouselHome";
 import CombinedFilter from "./components/filters/Filters";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,7 +14,7 @@ const scrollAt = 600;
 const App = () => {
   const scrollToFilterRef = useRef(null);
   const [shouldShowScroll, setShouldShowScroll] = useState(true);
-
+  
   const handleScroll = () => {
     if (window.scrollY > scrollAt) {
       setShouldShowScroll(false);
@@ -45,7 +44,7 @@ const App = () => {
         <ComponentHome />
         {shouldShowScroll && (
           <button
-            className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-orange-200 hover:bg-orange-300 text-black font-bold py-3 px-4 rounded-full bg-opacity-50"
+            className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-orange-100 hover:bg-orange-200 text-black font-bold py-3 px-4 rounded-full bg-opacity-50 z-40"
             onClick={scrollToFilter}
           >
             <FontAwesomeIcon icon={faChevronDown} size="2x"/>

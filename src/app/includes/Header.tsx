@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import {HamburgerMenu} from "../components/HamburgerMenu";
+import { HamburgerMenu } from "../components/HamburgerMenu";
 import "./../globals.css";
 
 const Header = () => {
@@ -24,17 +24,16 @@ const Header = () => {
             <HamburgerMenu />
           </div>
           <div className="hidden md:flex items-center justify-center">
-            <h1 className="text-gray-50 font-semibold text-3xl">
+            <h1 className="text-gray-50 font-semibold text-3xl md:text-2xl lg:text-3xl">
               Patrimoine de la ville de Crolles
             </h1>
           </div>
+
           <div className="flex items-center justify-end">
             <nav className="flex items-center justify-end text-gray-50 font-bold text-lg space-x-4">
-                  <button className="bg-gray-500 hover:bg-blue-300 text-white font-semibold py-2 px-4 rounded-md">
-                    <a href="/">
-                    Accueil
-                    </a>
-                  </button>
+              <button className="bg-gray-500 hover:bg-blue-300 text-white font-semibold py-2 px-4 rounded-md">
+                <a href="/">Accueil</a>
+              </button>
             </nav>
           </div>
         </div>
@@ -44,5 +43,3 @@ const Header = () => {
 };
 
 export default Header;
-
-

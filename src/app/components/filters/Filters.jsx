@@ -7,12 +7,29 @@ const CombinedFilter = () => {
   const [selectedThemes, setSelectedThemes] = useState([]);
   const [selectedEpoques, setSelectedEpoques] = useState([]);
   const [activeFilters, setActiveFilters] = useState({});
+  const [selectedAccess,setSelectedAcess] = useState()
+
 
   const accessItems = [
     ...Array.from(new Set(DataPatrimoine.map((val) => val.accessibilite))),
   ];
 
-  const filterAccess = (accessItem) => {
+  // const filterAccess = (accessItem) => {
+  //   const newSelectedAccess = selectedThemes.includes(accessItem)
+  //     ? selectedThemes.filter((theme) => theme !== accessItem)
+  //     : [...selectedThemes, accessItem];
+  //   const newItems = DataPatrimoine.filter((newval) =>
+  //     Array.isArray(newval.accessibilite)
+  //       ? newval.accessibilite.some((theme) =>
+  //           newSelectedAccess.includes(theme)
+  //         )
+  //       : newSelectedAccess.includes(newval.accessibilite)
+  //   );
+  //   setItems(newItems);
+  //   setSelectedThemes(newSelectedAccess);
+  // };
+
+    const filterAccess = (accessItem) => {
     const newSelectedAccess = selectedThemes.includes(accessItem)
       ? selectedThemes.filter((theme) => theme !== accessItem)
       : [...selectedThemes, accessItem];
@@ -26,7 +43,7 @@ const CombinedFilter = () => {
     setItems(newItems);
     setSelectedThemes(newSelectedAccess);
   };
-
+  
   const themeItems = Array.from(
     new Set(
       DataPatrimoine.flatMap((item) =>
@@ -70,20 +87,16 @@ const CombinedFilter = () => {
   );
 
   const handleFilterClick = (filterType, filterValue) => {
-    // Si le filtre n'est pas encore actif, on crée une nouvelle liste de filtres
     if (!activeFilters[filterType]) {
       activeFilters[filterType] = [];
     }
 
-    // On vérifie si le filtre est déjà actif
     const isCurrentlyActive = activeFilters[filterType].includes(filterValue);
 
-    // On met à jour la liste des filtres actifs
     const updatedFilters = isCurrentlyActive
       ? activeFilters[filterType].filter((filter) => filter !== filterValue)
       : [...activeFilters[filterType], filterValue];
 
-    // On met à jour les filtres actifs
     setActiveFilters({ ...activeFilters, [filterType]: updatedFilters });
 
     // On appelle la fonction de filtrage correspondante
@@ -107,7 +120,13 @@ const CombinedFilter = () => {
     if (Object.values(activeFilters).flat().length === 0) {
       setItems(DataPatrimoine);
     }
-  }, [activeFilters]);
+    // Ici, j'ai ajouter dans les écouteurs du useEffect, une observation
+    // des variables selectedThemes, et selectedEpoques
+  }, [activeFilters,selectedThemes,selectedEpoques]);
+
+
+  
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
       {/* Liste des cartes */}
@@ -117,7 +136,7 @@ const CombinedFilter = () => {
 
       {/* Filtres */}
       <div className="bg-gray-100 p-4 md:col-span-1 pt-16">
-        <h3 className="text-lg font-semibold mb-4">Filtre d'accès</h3>
+        <h3 className="text-lg font-semibold mb-4">Accessible au public</h3>
         {accessItems.map((val) => (
           <button
             key={val}
@@ -132,7 +151,7 @@ const CombinedFilter = () => {
           </button>
         ))}
 
-        <h3 className="text-lg font-semibold mt-8 mb-4">Filtre d'époque</h3>
+        <h3 className="text-lg font-semibold mt-8 mb-4">Époque</h3>
         {epoqueItems.map((val) => (
           <button
             key={val}
@@ -147,7 +166,7 @@ const CombinedFilter = () => {
           </button>
         ))}
 
-        <h3 className="text-lg font-semibold mt-8 mb-4">Filtre de thème</h3>
+        <h3 className="text-lg font-semibold mt-8 mb-4">Thème</h3>
         {themeItems.map((val) => (
           <button
             key={val}

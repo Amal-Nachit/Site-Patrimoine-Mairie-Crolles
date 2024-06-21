@@ -39,18 +39,20 @@ export function ComponentHome() {
         {/* Conteneur pour l'image centrée */}
         <div className="flex h-full items-center justify-center">
           {/* Image avec taille fixe */}
-          <div className="absolute top-0 left-0 w-full h-full">
+          <div className="hidden sm:block absolute top-0 left-0 w-full h-full">
             <img
               src={slides[currentSlide]}
               alt={`Slide ${currentSlide + 1}`}
               className="h-[90vh] w-[100vw] object-cover blur-sm"
             />
           </div>
-          <div className="relative w-full h-full">
+          <div className="relative sm:h-[90vh]">
             <img
               src={slides[currentSlide]}
               alt={`Slide ${currentSlide + 1}`}
-              className="h-[90vh] w-[100vw] object-contain "
+              className={`h-full w-full object-contain ${
+                currentSlide === 0 ? "sm:h-[90vh]" : ""
+              }`}
             />
           </div>
         </div>

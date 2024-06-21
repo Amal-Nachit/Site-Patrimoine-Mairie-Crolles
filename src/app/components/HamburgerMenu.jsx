@@ -58,7 +58,7 @@ export const HamburgerMenu = () => {
       <div className="sticky ml-3">
         <div className="flex items-center cursor-pointer" onClick={toggleOpen}>
           <Hamburger toggled={open} color="#fff" />
-          <h2 className="ml-1 font-arial text-white text-2xl">MENU</h2>
+          <h2 className="ml-1 text-white text-2xl">MENU</h2>
         </div>
       </div>
       {open && (

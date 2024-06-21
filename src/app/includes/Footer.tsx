@@ -5,7 +5,7 @@ const Footer = () => {
     <section className="pb-3 bg-[url('/images/footer.jpg')] mt-[-0.75rem]">
       <hr className="mt-3 mb-3" />
 
-      <p className="text-base text-center font-arial font-bold text-white mb-3">
+      <p className="text-base text-center font-bold text-white mb-3">
         Crédits : Photos / Textes / Conception graphique / Développement : Ville
         de Crolles / Services communication et patrimoine
       </p>
