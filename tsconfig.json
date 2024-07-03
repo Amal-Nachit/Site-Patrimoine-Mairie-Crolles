@@ -30,6 +30,6 @@
     "src/app/includes/Footer.tsx",
     "src/app/components/Menu.jsx",
     "src/app/components/data/CardPatrimoine.jsx"
-  ],
+, "src/app/components/data/DataPatrimoine.jsx"  ],
   "exclude": ["node_modules"]
 }

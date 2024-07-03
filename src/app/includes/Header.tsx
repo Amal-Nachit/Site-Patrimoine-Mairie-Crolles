@@ -13,7 +13,7 @@ const Header = () => {
               <img
                 src="/images/logo.jpg"
                 alt="Logo"
-                className="mr-7 lg:block"
+                className="mr-3 lg:block"
                 style={{
                   height: "4rem",
                   width: "4rem",
@@ -29,7 +29,7 @@ const Header = () => {
             </h1>
           </div>
 
-          <div className="flex items-center justify-end">
+          <div className="flex items-center justify-end sm:space-x-4">
             <nav className="flex items-center justify-end text-gray-50 font-bold text-lg space-x-4">
               <button className="bg-gray-500 hover:bg-blue-300 text-white font-semibold py-2 px-4 rounded-md">
                 <a href="/">Accueil</a>

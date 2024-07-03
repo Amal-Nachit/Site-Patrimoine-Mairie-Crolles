@@ -129,13 +129,8 @@ const CombinedFilter = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-      {/* Liste des cartes */}
-      <div className="md:col-span-4">
-        <Card items={items} />
-      </div>
-
       {/* Filtres */}
-      <div className="bg-gray-100 p-4 md:col-span-1 pt-16">
+      <div className="bg-gray-100 p-4 md:col-span-1 pt-16 lg:col-span-1">
         <h3 className="text-lg font-semibold mb-4">Accessible au public</h3>
         {accessItems.map((val) => (
           <button
@@ -190,6 +185,11 @@ const CombinedFilter = () => {
         >
           Réinitialiser tous les filtres
         </button>
+      </div>
+
+      {/* Liste des cartes */}
+      <div className="md:col-span-4 lg:col-span-4">
+        <Card items={items} />
       </div>
     </div>
   );

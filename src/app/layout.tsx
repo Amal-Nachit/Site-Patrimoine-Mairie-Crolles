@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Head from "next/head";
+import DataPatrimoine from "./components/data/DataPatrimoine";
 
 export const metadata: Metadata = {
   title: "Patrimoine de Crolles",

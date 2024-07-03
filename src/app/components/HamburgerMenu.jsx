@@ -55,7 +55,7 @@ export const HamburgerMenu = () => {
 
   return (
     <div className="relative z-50" ref={menuRef}>
-      <div className="sticky ml-3">
+      <div className="sticky">
         <div className="flex items-center cursor-pointer" onClick={toggleOpen}>
           <Hamburger toggled={open} color="#fff" />
           <h2 className="ml-1 text-white text-2xl">MENU</h2>

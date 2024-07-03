@@ -7,7 +7,7 @@ const Card = ({ items }) => {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 my-16 mx-4">
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 my-16 mx-10">
       {items.map((val) => (
         <div
           key={val.id}
