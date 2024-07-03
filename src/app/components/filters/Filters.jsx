@@ -6,44 +6,13 @@ const CombinedFilter = () => {
   const [items, setItems] = useState(DataPatrimoine);
   const [selectedThemes, setSelectedThemes] = useState([]);
   const [selectedEpoques, setSelectedEpoques] = useState([]);
+  const [selectedAccess, setSelectedAccess] = useState([]);
   const [activeFilters, setActiveFilters] = useState({});
-  const [selectedAccess,setSelectedAcess] = useState()
-
 
   const accessItems = [
     ...Array.from(new Set(DataPatrimoine.map((val) => val.accessibilite))),
   ];
 
-  // const filterAccess = (accessItem) => {
-  //   const newSelectedAccess = selectedThemes.includes(accessItem)
-  //     ? selectedThemes.filter((theme) => theme !== accessItem)
-  //     : [...selectedThemes, accessItem];
-  //   const newItems = DataPatrimoine.filter((newval) =>
-  //     Array.isArray(newval.accessibilite)
-  //       ? newval.accessibilite.some((theme) =>
-  //           newSelectedAccess.includes(theme)
-  //         )
-  //       : newSelectedAccess.includes(newval.accessibilite)
-  //   );
-  //   setItems(newItems);
-  //   setSelectedThemes(newSelectedAccess);
-  // };
-
-    const filterAccess = (accessItem) => {
-    const newSelectedAccess = selectedThemes.includes(accessItem)
-      ? selectedThemes.filter((theme) => theme !== accessItem)
-      : [...selectedThemes, accessItem];
-    const newItems = DataPatrimoine.filter((newval) =>
-      Array.isArray(newval.accessibilite)
-        ? newval.accessibilite.some((theme) =>
-            newSelectedAccess.includes(theme)
-          )
-        : newSelectedAccess.includes(newval.accessibilite)
-    );
-    setItems(newItems);
-    setSelectedThemes(newSelectedAccess);
-  };
-  
   const themeItems = Array.from(
     new Set(
       DataPatrimoine.flatMap((item) =>
@@ -51,32 +20,6 @@ const CombinedFilter = () => {
       )
     )
   );
-
-  const filterTheme = (themeItem) => {
-    const newSelectedThemes = selectedThemes.includes(themeItem)
-      ? selectedThemes.filter((theme) => theme !== themeItem)
-      : [...selectedThemes, themeItem];
-    const newItems = DataPatrimoine.filter((newval) =>
-      Array.isArray(newval.theme)
-        ? newval.theme.some((theme) => newSelectedThemes.includes(theme))
-        : newSelectedThemes.includes(newval.theme)
-    );
-    setItems(newItems);
-    setSelectedThemes(newSelectedThemes);
-  };
-
-  const filterEpoque = (epoqueItem) => {
-    const newSelectedEpoques = selectedEpoques.includes(epoqueItem)
-      ? selectedEpoques.filter((epoque) => epoque !== epoqueItem)
-      : [...selectedEpoques, epoqueItem];
-    const newItems = DataPatrimoine.filter((newval) =>
-      Array.isArray(newval.epoque)
-        ? newval.epoque.some((epoque) => newSelectedEpoques.includes(epoque))
-        : newSelectedEpoques.includes(newval.epoque)
-    );
-    setItems(newItems);
-    setSelectedEpoques(newSelectedEpoques);
-  };
 
   const epoqueItems = Array.from(
     new Set(
@@ -86,46 +29,68 @@ const CombinedFilter = () => {
     )
   );
 
-  const handleFilterClick = (filterType, filterValue) => {
-    if (!activeFilters[filterType]) {
-      activeFilters[filterType] = [];
+  const applyFilters = () => {
+    let filteredItems = DataPatrimoine;
+
+    if (selectedAccess.length > 0) {
+      filteredItems = filteredItems.filter((item) =>
+        selectedAccess.includes(item.accessibilite)
+      );
     }
 
-    const isCurrentlyActive = activeFilters[filterType].includes(filterValue);
+    if (selectedEpoques.length > 0) {
+      filteredItems = filteredItems.filter((item) =>
+        Array.isArray(item.epoque)
+          ? item.epoque.some((epoque) => selectedEpoques.includes(epoque))
+          : selectedEpoques.includes(item.epoque)
+      );
+    }
 
-    const updatedFilters = isCurrentlyActive
-      ? activeFilters[filterType].filter((filter) => filter !== filterValue)
-      : [...activeFilters[filterType], filterValue];
+    if (selectedThemes.length > 0) {
+      filteredItems = filteredItems.filter((item) =>
+        Array.isArray(item.theme)
+          ? item.theme.some((theme) => selectedThemes.includes(theme))
+          : selectedThemes.includes(item.theme)
+      );
+    }
 
-    setActiveFilters({ ...activeFilters, [filterType]: updatedFilters });
+    setItems(filteredItems);
+  };
 
-    // On appelle la fonction de filtrage correspondante
+  const handleFilterClick = (filterType, filterValue) => {
+    let updatedFilters;
     switch (filterType) {
       case "access":
-        filterAccess(filterValue);
+        updatedFilters = selectedAccess.includes(filterValue)
+          ? selectedAccess.filter((access) => access !== filterValue)
+          : [...selectedAccess, filterValue];
+        setSelectedAccess(updatedFilters);
         break;
       case "epoque":
-        filterEpoque(filterValue);
+        updatedFilters = selectedEpoques.includes(filterValue)
+          ? selectedEpoques.filter((epoque) => epoque !== filterValue)
+          : [...selectedEpoques, filterValue];
+        setSelectedEpoques(updatedFilters);
         break;
       case "theme":
-        filterTheme(filterValue);
+        updatedFilters = selectedThemes.includes(filterValue)
+          ? selectedThemes.filter((theme) => theme !== filterValue)
+          : [...selectedThemes, filterValue];
+        setSelectedThemes(updatedFilters);
         break;
       default:
         break;
     }
+
+    setActiveFilters({
+      ...activeFilters,
+      [filterType]: updatedFilters,
+    });
   };
 
   useEffect(() => {
-    // Si aucun filtre n'est sélectionné, on affiche la liste complète
-    if (Object.values(activeFilters).flat().length === 0) {
-      setItems(DataPatrimoine);
-    }
-    // Ici, j'ai ajouter dans les écouteurs du useEffect, une observation
-    // des variables selectedThemes, et selectedEpoques
-  }, [activeFilters,selectedThemes,selectedEpoques]);
-
-
-  
+    applyFilters();
+  }, [selectedAccess, selectedEpoques, selectedThemes]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -141,11 +106,11 @@ const CombinedFilter = () => {
           <button
             key={val}
             className={`${
-              activeFilters.access?.includes(val)
+              selectedAccess.includes(val)
                 ? "border border-blue-500 bg-blue-100 text-blue-800"
                 : "border border-gray-300 bg-white text-gray-700"
             } font-normal py-2 px-4 rounded-md mr-2 mb-2 transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50`}
-            onClick={(event) => handleFilterClick("access", val, event)}
+            onClick={() => handleFilterClick("access", val)}
           >
             {val}
           </button>
@@ -156,11 +121,11 @@ const CombinedFilter = () => {
           <button
             key={val}
             className={`${
-              activeFilters.epoque?.includes(val)
+              selectedEpoques.includes(val)
                 ? "border border-blue-500 bg-blue-100 text-blue-800"
                 : "border border-gray-300 bg-white text-gray-700"
             } font-normal py-2 px-4 rounded-md mr-2 mb-2 transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50`}
-            onClick={(event) => handleFilterClick("epoque", val, event)}
+            onClick={() => handleFilterClick("epoque", val)}
           >
             {val}
           </button>
@@ -171,11 +136,11 @@ const CombinedFilter = () => {
           <button
             key={val}
             className={`${
-              activeFilters.theme?.includes(val)
+              selectedThemes.includes(val)
                 ? "border border-blue-500 bg-blue-100 text-blue-800"
                 : "border border-gray-300 bg-white text-gray-700"
             } font-normal py-2 px-4 rounded-md mr-2 mb-2 transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50`}
-            onClick={(event) => handleFilterClick("theme", val, event)}
+            onClick={() => handleFilterClick("theme", val)}
           >
             {val}
           </button>
@@ -185,6 +150,9 @@ const CombinedFilter = () => {
           className="mt-8 border border-gray-300 bg-white text-gray-700 font-normal py-2 px-4 rounded-md w-full transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50"
           onClick={() => {
             setItems(DataPatrimoine);
+            setSelectedAccess([]);
+            setSelectedEpoques([]);
+            setSelectedThemes([]);
             setActiveFilters({});
           }}
         >
