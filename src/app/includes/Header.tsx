@@ -9,7 +9,7 @@ const Header = () => {
       <div className="container p-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <a href="http://www.ville-crolles.fr">
+            <a href="https://www.crolles.fr/">
               <img
                 src="/images/logo.jpg"
                 alt="Logo"

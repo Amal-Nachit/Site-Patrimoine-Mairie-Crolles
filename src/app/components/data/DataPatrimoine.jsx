@@ -37,7 +37,7 @@ const DataPatrimoine = [
     image: "/images/Aqueduc/1.jpg",
     accessibilite: "Oui",
     epoque: "Moderne",
-    theme: "Eau",
+    theme: "Au fil de l'eau",
   },
   {
     id: 5,

@@ -147,7 +147,7 @@ const CombinedFilter = () => {
         ))}
 
         <button
-          className="mt-8 border border-gray-300 bg-white text-gray-700 font-normal py-2 px-4 rounded-md w-full transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50"
+          className="mt-16 border border-gray-300 bg-white text-gray-700 font-normal py-2 px-4 rounded-md w-full transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50"
           onClick={() => {
             setItems(DataPatrimoine);
             setSelectedAccess([]);
