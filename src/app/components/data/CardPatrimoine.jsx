@@ -49,7 +49,7 @@ const Card = ({ items }) => {
             className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             onClick={() => setShowAll(true)}
           >
-            <FontAwesomeIcon icon={faAnglesDown} className="pl-2 text-sm" />{" "}
+            <FontAwesomeIcon icon={faAnglesDown} className="text-sm" />{" "}
             Afficher tout
           </button>
         )}

@@ -26,7 +26,7 @@ export const HamburgerMenu = () => {
   useEffect(() => {
     if (!open) {
       setSubMenuOpen(false);
-    }
+    } 
   }, [open]);
 
   const menuVariants = {

@@ -19,6 +19,8 @@ lienUrl: string;
 texteLien: string;
 };
 export type SingleActualiteProps = {
+  lien_text: boolean;
+  length: number;
   texte_lien: ReactNode;
   lien_url: string | undefined;
   lienUrl: string;

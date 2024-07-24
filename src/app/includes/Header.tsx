@@ -30,10 +30,13 @@ const Header = () => {
           </div>
 
           <div className="flex items-center justify-end sm:space-x-4">
-            <nav className="flex items-center justify-end text-gray-50 font-bold text-lg space-x-4">
-              <button className="bg-gray-500 hover:bg-blue-300 text-white font-semibold py-2 px-4 rounded-md">
-                <a href="/">Accueil</a>
-              </button>
+            <nav className="flex items-center justify-end  font-bold text-lg space-x-4">
+              <a
+                href="/"
+                className="bg-blue-100 hover:bg-blue-200 font-semibold py-2 px-4 rounded-md"
+              >
+                Accueil
+              </a>
             </nav>
           </div>
         </div>

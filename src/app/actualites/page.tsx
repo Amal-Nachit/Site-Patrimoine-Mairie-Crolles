@@ -7,7 +7,6 @@ import { TailSpin } from "react-loader-spinner";
 import { ActualiteProps } from "../../app/Utils/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons/faAnglesRight";
-import { faAnglesDown } from "@fortawesome/free-solid-svg-icons/faAnglesDown";
 
 const Actualites = () => {
   const [actualitesList, setActualitesList] = useState<ActualiteProps[]>([]);
@@ -38,7 +37,7 @@ const Actualites = () => {
 
   return (
     <main className="flex flex-col items-center justify-center my-12">
-      {actualitesList.length > 0 && (
+        {actualitesList.length > 0 && (
         <>
           <h1 className="text-4xl font-bold text-gray-800 mb-10">
             Toutes nos actualités
@@ -101,7 +100,14 @@ const Actualites = () => {
                       </div>
                       <div className="py-2 px-2 bg-blue-100">
                         <span className="text-gray-600 text-sm">
-                          {patrimoine_actualite.date}
+                          {new Date(patrimoine_actualite.date).toLocaleDateString(
+                            "fr-FR",
+                            {
+                              day: "2-digit",
+                              month: "long",
+                              year: "numeric",
+                            }
+                          )}
                         </span>
                       </div>
                     </div>

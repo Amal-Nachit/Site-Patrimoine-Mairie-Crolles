@@ -61,7 +61,7 @@ export function ComponentHome() {
           {/* Bouton suivant */}
           <button
             onClick={handleNextClick}
-            className="bg-gray-200 hover:bg-green-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out"
+            className="bg-gray-200 hover:bg-blue-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out bg-opacity-50 hover:bg-opacity-100"
           >
             <FontAwesomeIcon icon={faAnglesRight} />
           </button>
@@ -70,7 +70,7 @@ export function ComponentHome() {
           {/* Bouton précédent */}
           <button
             onClick={handlePrevClick}
-            className="bg-gray-200 hover:bg-green-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out"
+            className="bg-gray-200 hover:bg-blue-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out bg-opacity-50 hover:bg-opacity-100"
           >
             <FontAwesomeIcon icon={faAnglesLeft} />
           </button>
