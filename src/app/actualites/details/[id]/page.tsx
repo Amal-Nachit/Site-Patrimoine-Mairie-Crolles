@@ -77,7 +77,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
         )}
-        {actualiteData?.image_name && (
+        {Array.isArray(actualiteData?.image_name) && (
           <div className="flex flex-wrap justify-center gap-4 p-4 mb-12">
             {actualiteData.image_name.map(
               (image_name: string | undefined, index: number) => (
@@ -93,11 +93,10 @@ const Page = ({ params }: { params: { id: string } }) => {
         )}
       </main>
       <div>
-      <Footer />
+        <Footer />
       </div>
     </div>
   );
 };
 
 export default Page;
-
