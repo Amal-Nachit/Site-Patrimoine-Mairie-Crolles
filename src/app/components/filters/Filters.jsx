@@ -94,72 +94,73 @@ const CombinedFilter = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-      {/* Liste des cartes */}
-      <div className="md:col-span-4">
-        <Card items={items} />
-      </div>
+  <div className="bg-gray-100 p-4 md:col-span-1 order-1 md:order-none pt-4">
+  <h3 className="text-black text-xl sm:text-xl md:text-2xl lg:text-2xl font-bold mt-8 mb-4">Accessible au public</h3>
+    {accessItems.map((val) => (
+      <button
+        key={val}
+        className={`${
+          selectedAccess.includes(val)
+            ? "font-semibold border border-blue-500 bg-blue-100 text-blue-800"
+            : "font-semibold border border-gray-300 bg-white text-gray-700"
+        } font-normal py-2 px-4 rounded-md mr-2 mb-2 transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50`}
+        onClick={() => handleFilterClick("access", val)}
+      >
+        {val}
+      </button>
+    ))}
 
-      {/* Filtres */}
-      <div className="bg-gray-100 p-4 md:col-span-1 pt-16">
-        <h3 className="text-lg font-semibold mb-4">Accessible au public</h3>
-        {accessItems.map((val) => (
-          <button
-            key={val}
-            className={`${
-              selectedAccess.includes(val)
-                ? "border border-blue-500 bg-blue-100 text-blue-800"
-                : "border border-gray-300 bg-white text-gray-700"
-            } font-normal py-2 px-4 rounded-md mr-2 mb-2 transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50`}
-            onClick={() => handleFilterClick("access", val)}
-          >
-            {val}
-          </button>
-        ))}
+<h3 className="text-black text-xl sm:text-xl md:text-2xl lg:text-2xl font-bold mt-8 mb-4">Époque</h3>
 
-        <h3 className="text-lg font-semibold mt-8 mb-4">Époque</h3>
-        {epoqueItems.map((val) => (
-          <button
-            key={val}
-            className={`${
-              selectedEpoques.includes(val)
-                ? "border border-blue-500 bg-blue-100 text-blue-800"
-                : "border border-gray-300 bg-white text-gray-700"
-            } font-normal py-2 px-4 rounded-md mr-2 mb-2 transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50`}
-            onClick={() => handleFilterClick("epoque", val)}
-          >
-            {val}
-          </button>
-        ))}
+{epoqueItems.map((val) => (
+  <button
+    key={val}
+    className={`${
+      selectedEpoques.includes(val)
+        ? "font-semibold border border-blue-500 bg-blue-100 text-blue-800"
+        : "font-semibold border border-gray-300 bg-white text-gray-700"
+    } py-2 px-4 rounded-md mr-2 mb-2 transition duration-200 ease-in-out hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700 focus:outline-none`}
+    onClick={() => handleFilterClick("epoque", val)}
+  >
+    {val}
+  </button>
+    ))}
 
-        <h3 className="text-lg font-semibold mt-8 mb-4">Thème</h3>
-        {themeItems.map((val) => (
-          <button
-            key={val}
-            className={`${
-              selectedThemes.includes(val)
-                ? "border border-blue-500 bg-blue-100 text-blue-800"
-                : "border border-gray-300 bg-white text-gray-700"
-            } font-normal py-2 px-4 rounded-md mr-2 mb-2 transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50`}
-            onClick={() => handleFilterClick("theme", val)}
-          >
-            {val}
-          </button>
-        ))}
+    <h3 className="text-black text-xl sm:text-xl md:text-2xl lg:text-2xl font-bold mt-8 mb-4">Thème</h3>
+    {themeItems.map((val) => (
+      <button
+        key={val}
+        className={`${
+          selectedThemes.includes(val)
+            ? "font-semibold border border-blue-500 bg-blue-100 text-blue-800"
+            : "font-semibold border border-gray-300 bg-white text-gray-700"
+        } font-normal py-2 px-4 rounded-md mr-2 mb-2 transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50`}
+        onClick={() => handleFilterClick("theme", val)}
+      >
+        {val}
+      </button>
+    ))}
 
-        <button
-          className="mt-16 border border-gray-300 bg-white text-gray-700 font-normal py-2 px-4 rounded-md w-full transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50"
-          onClick={() => {
-            setItems(DataPatrimoine);
-            setSelectedAccess([]);
-            setSelectedEpoques([]);
-            setSelectedThemes([]);
-            setActiveFilters({});
-          }}
-        >
-          Réinitialiser tous les filtres
-        </button>
-      </div>
-    </div>
+    <button
+      className="font-semibold mt-16 border border-gray-300 bg-white text-gray-700 font-normal py-2 px-4 rounded-md w-full transition duration-150 ease-in-out hover:border-blue-500 hover:bg-blue-50"
+      onClick={() => {
+        setItems(DataPatrimoine);
+        setSelectedAccess([]);
+        setSelectedEpoques([]);
+        setSelectedThemes([]);
+        setActiveFilters({});
+      }}
+    >
+      Réinitialiser tous les filtres
+    </button>
+  </div>
+
+  {/* Liste des cartes */}
+  <div className="md:col-span-4 order-2 md:order-none">
+    <Card items={items} />
+  </div>
+</div>
+
   );
 };
 

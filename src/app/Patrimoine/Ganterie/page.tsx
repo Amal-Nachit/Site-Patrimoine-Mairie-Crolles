@@ -93,7 +93,7 @@ function App() {
             </p>
           </section>
 
-          <section className="sm:mx-8 md:mx-4 mb-8 flex justify-center">
+          <section className="sm:mx-8 md:mx-4 flex justify-center">
             <figure className="flex flex-col items-center justify-center w-1/4 mr-12">
               <img
                 src="/images/Ganterie/2.jpg"
@@ -119,9 +119,7 @@ function App() {
         </main>
       </div>
 
-      <div>
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 }

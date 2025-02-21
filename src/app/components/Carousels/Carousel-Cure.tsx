@@ -2,10 +2,12 @@
 
 import { faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 export function ComponentCure() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const slides = [
     "/images/Cure/2.jpg",
     "/images/Cure/3.jpg",
@@ -14,17 +16,21 @@ export function ComponentCure() {
     "/images/Cure/6.jpg",
   ];
 
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 3000);
+    if (!isPaused) {
+      timerRef.current = setInterval(() => {
+        setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
+      }, 6000);
+    }
 
-    return () => clearInterval(timer);
-  }, []);
-
-  const handleNextClick = () => {
-    setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
-  };
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [isPaused, slides.length]);
 
   const handlePrevClick = () => {
     setCurrentSlide(
@@ -32,23 +38,37 @@ export function ComponentCure() {
     );
   };
 
+  const handleNextClick = () => {
+    setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
+  };
+
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
+
   return (
-    <div className="flex justify-center items-center pt-0 pb-8">
-      {/* Structure pour une image avec ses boutons */}
+    <div className="flex justify-center items-center pt-0 pb-8 ">
       <div className="relative w-1/2 sm:w-1/2 xl:w-1/2 2xl:w-1/2">
-        {/* Conteneur pour l'image centrée */}
-        <div className="flex justify-center items-center h-full">
-          {/* Image avec taille fixe */}
+      <div
+          className="flex flex-col justify-center h-full"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <img
             src={slides[currentSlide]}
-            alt={`Slide ${currentSlide + 1}`}
-            className="h-[500px] w-[900px] object-contain rounded-lg"
+            alt={slides[currentSlide]}
+            className="h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] w-full object-contain rounded-lg mb-2"
           />
         </div>
 
-        {/* Conteneur pour les boutons centrés en bas */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex justify-center space-x-4 p-4">
-          {/* Bouton précédent */}
           <button
             onClick={handlePrevClick}
             className="bg-gray-200 hover:bg-green-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out"
@@ -56,7 +76,6 @@ export function ComponentCure() {
             <FontAwesomeIcon icon={faAnglesLeft} />
           </button>
 
-          {/* Bouton suivant */}
           <button
             onClick={handleNextClick}
             className="bg-gray-200 hover:bg-green-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out"

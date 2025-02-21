@@ -7,7 +7,7 @@ export async function getAllActualites() {
     },
   };
   let url = `${process.env.NEXT_PUBLIC_API_URL}api/patrimoine/actualites`;
-  console.log(url);
+  console.log("URL:",url);
   return axios.get(url, axiosConfig).then((res) => {
     return res;
   });

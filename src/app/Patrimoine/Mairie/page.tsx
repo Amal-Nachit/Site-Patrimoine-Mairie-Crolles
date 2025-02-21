@@ -99,8 +99,7 @@ function App() {
               du dimanche.
             </p>
           </section>
-          <div className="lg:max-w-5xl md:max-w-2xl sm:max-w-1xl mx-auto sm:px-6 md:px-2 lg:px-6 py-8">
-            <section className="bg-gray-100 p-4 rounded-lg shadow-md">
+            <section className="bg-gray-100 p-4 rounded-lg shadow-md my-8 mx-64">
               <h2 className="text-2xl font-bold text-left text-black-600 underline mb-4">
                 Anecdote
               </h2>
@@ -109,7 +108,6 @@ function App() {
                 maire de 1790 à 1802.
               </p>
             </section>
-          </div>
 
           <div>
             <ComponentMairie />
@@ -132,8 +130,6 @@ function App() {
             </section>
             
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

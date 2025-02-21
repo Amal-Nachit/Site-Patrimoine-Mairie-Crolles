@@ -94,11 +94,11 @@ export const HamburgerMenu = () => {
             alignItems: "center",
             gap: "1rem",
           }}
-          className="cursor-pointer hover:bg-zinc-800 hover:text-white transition-colors duration-300"
+          className="text-black cursor-pointer hover:bg-zinc-800 hover:text-white transition-colors duration-300"
           onClick={handleSubMenuOpen}
         >
           <FontAwesomeIcon icon={faLandmark} />
-          PATRIMOINES DE CROLLES{" "}
+          PATRIMOINES DE CROLLES
           <FontAwesomeIcon
             icon={subMenuOpen ? faChevronDown : faChevronUp}
             className={`transform transition-transform ${open ? "" : ""}`}
@@ -126,7 +126,7 @@ export const HamburgerMenu = () => {
                     gap: "1rem",
                     fontSize: "0.9rem",
                   }}
-                  className="cursor-pointer hover:bg-zinc-800 hover:text-white transition-colors duration-300"
+                  className="text-black cursor-pointer hover:bg-zinc-800 hover:text-white transition-colors duration-300"
                 >
                   <FontAwesomeIcon icon={faAngleRight} />
                   {item.name}
@@ -145,7 +145,7 @@ export const HamburgerMenu = () => {
               alignItems: "center",
               gap: "1rem",
             }}
-            className="cursor-pointer hover:bg-zinc-800 hover:text-white transition-colors duration-300"
+            className="text-black cursor-pointer hover:bg-zinc-800 hover:text-white transition-colors duration-300"
           >
             <FontAwesomeIcon icon={faMap} />
             BALADES AUTOUR DES PATRIMOINES
@@ -161,7 +161,7 @@ export const HamburgerMenu = () => {
               alignItems: "center",
               gap: "1rem",
             }}
-            className="cursor-pointer hover:bg-zinc-800 hover:text-white transition-colors duration-300"
+            className="text-black cursor-pointer hover:bg-zinc-800 hover:text-white transition-colors duration-300"
           >
             <FontAwesomeIcon icon={faMicrophone} />
             CES CROLLOIS QUI FONT L'HISTOIRE

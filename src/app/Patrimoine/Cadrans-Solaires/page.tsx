@@ -75,7 +75,7 @@ function App() {
               L'origine
             </h2>
             <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4">
-              {"   "} L’origine des cadrans solaires semble se perdre dans la
+              L’origine des cadrans solaires semble se perdre dans la
               nuit des temps. D’après Hérodote, (Ve siècle av. J.C.), le gnomon
               viendrait de Babylonie. En grec ancien, gnomon signifie
               indicateur, c’est à dire le « style », aiguille dont l’ombre
@@ -87,7 +87,7 @@ function App() {
             </p>
 
             <h2 className="text-2xl font-bold sm:mx-10 md:mx-4 lg:mx-32 mb-4 underline">
-              Un peu d'histoire{" "}
+              Un peu d'histoire
             </h2>
 
             <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4">
@@ -118,8 +118,7 @@ function App() {
               synthétique souple, à raison de 3% du volume total, selon les
               normes de l’Inspection des Monuments Historiques.
             </p>
-            <div className="lg:max-w-5xl md:max-w-2xl sm:max-w-1xl mx-auto sm:px-6 md:px-2 lg:px-6 py-8">
-              <section className="bg-gray-100 p-4 rounded-lg shadow-md">
+            <section className="sm:mx-8 md:mx-4 lg:mx-32 my-8 bg-gray-100 p-6 rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold text-left text-black-600 underline mb-4">
                   Comment lire l’heure au cadran
                 </h2>
@@ -139,7 +138,7 @@ function App() {
                     </li>
                   </ol>
                   <br />
-                  <div className="">
+                  <div>
                     <img
                       src="/images/Cadrans-solaires/Heure-cadran.png"
                       alt="Heure du cadran"
@@ -150,9 +149,7 @@ function App() {
                   </div>
                 </p>
               </section>
-            </div>
-            <div className="lg:max-w-5xl md:max-w-2xl sm:max-w-1xl mx-auto sm:px-6 md:px-2 lg:px-6 py-8">
-              <section className="bg-gray-100 p-4 rounded-lg shadow-md">
+            <section className="sm:mx-8 md:mx-4 lg:mx-32 my-8 bg-gray-100 p-6 rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold text-left text-black-600 underline mb-4">
                   Anecdote
                 </h2>
@@ -163,15 +160,11 @@ function App() {
                   en direction de Chambéry.
                 </p>
               </section>
-            </div>
           </section>
-          <div>
+          <div className="mb-12">
             <ComponentCadrans />
           </div>
-          <div></div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

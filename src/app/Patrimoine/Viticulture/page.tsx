@@ -95,8 +95,6 @@ function App() {
             <ComponentViticulture />
           </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

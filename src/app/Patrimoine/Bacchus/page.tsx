@@ -2,7 +2,6 @@
 import React from "react";
 import Header from "../../../app/includes/Header";
 import Footer from "@/app/includes/Footer";
-import { ComponentBacchus } from "@/app/components/Carousels/Carousel-Bacchus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faCheck } from "@fortawesome/free-solid-svg-icons";
 function App() {
@@ -50,9 +49,10 @@ function App() {
             <img
               src="/images/Bacchus/1.jpg"
               alt="Bacchus"
-              className={`w-[80%] sm:w-[90%] lg:w-2/5 object-contain rounded-lg`}
+              className={`w-[80%] sm:w-[60%] md:w-[60%] lg:w-[30%] object-contain rounded-lg`}
             />
           </div>
+
           <section className="sm:mx-8 md:mx-4 lg:mx-32 my-8">
             <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4">
               Crolles au début du XXe siècle compte 8 cafés ou restaurants. Le
@@ -67,9 +67,18 @@ function App() {
               d’une restauration récente financée par la commune.
             </p>
           </section>
-          <div>
-            <ComponentBacchus />
-          </div>
+          <div className="flex flex-col sm:flex-row md:flex-row justify-center space-y-4 sm:space-x-4 md:space-x-4 my-16">
+  <img
+    src="/images/Bacchus/2.jpg"
+    alt="Image 2"
+    className="w-full w-[45%] sm:w-[45%] md:w-[35%] lg:w-[35%] object-contain"
+  />
+  <img
+    src="/images/Bacchus/3.jpg"
+    alt="Image 3"
+    className="w-full sm:w-[45%] md:w-[45%] lg:w-[28%] object-contain"
+  />
+</div>
           <div>
             <section className="sm:mx-8 md:mx-4 lg:mx-32 my-8">
               <h2 className="text-2xl font-bold sm:mx-10 md:mx-4 lg:mx-32 mb-4 underline">
@@ -81,8 +90,6 @@ function App() {
             </section>
           </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

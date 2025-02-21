@@ -107,8 +107,6 @@ function App() {
           </section>
 
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

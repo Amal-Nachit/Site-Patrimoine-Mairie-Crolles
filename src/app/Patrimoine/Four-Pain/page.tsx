@@ -16,7 +16,7 @@ function App() {
             <div className="flex justify-center">
               <hr className="mt-2 mb-8 border-zinc-300 w-1/4" />
             </div>
-            <div className="flex justify-center space-x-4 mb-4 mx-auto md:mx-16">
+            <div className="flex justify-center space-x-10 mb-4 mx-auto md:mx-16">
               <div className="flex flex-col">
                 <h3 className="text-lg font-semibold mb-1">Localisation :</h3>
                 <p className="text-sm">
@@ -110,8 +110,6 @@ function App() {
             <ComponentFour />
           </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

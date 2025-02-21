@@ -75,8 +75,6 @@ Une dizaine de croix a été recensée sur l'ensemble du territoire crollois.
             <ComponentCroix />
           </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

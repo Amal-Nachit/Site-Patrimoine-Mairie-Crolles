@@ -133,12 +133,10 @@ function App() {
               </a>
             </p>
           </section>
-          <div>
+          <div className="my-10">
             <ComponentChateauMontfort />
           </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

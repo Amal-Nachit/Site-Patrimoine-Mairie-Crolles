@@ -92,8 +92,6 @@ function App() {
             <ComponentVitraux />
           </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

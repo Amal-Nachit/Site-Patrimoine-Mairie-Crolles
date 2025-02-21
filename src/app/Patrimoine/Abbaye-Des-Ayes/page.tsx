@@ -59,11 +59,11 @@ function App() {
             </figure>
           </div>
 
-          <section className="sm:mx-8 md:mx-4 lg:mx-32 mb-8">
-            <h2 className="text-2xl font-bold sm:mx-10 md:mx-4 lg:mx-32 mb-4 underline">
+          <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h2 className="text-2xl font-bold underline mb-4">
               La fondation
             </h2>
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4">
+            <p className="">
               Marguerite de Bourgogne, veuve du Dauphin Guigues IV, lia son
               destin et son histoire a ceux de notre commune, en fondant
               l'abbaye des Ayes vers 1141. De filiation cistercienne* et soumise
@@ -71,15 +71,16 @@ function App() {
               Notre-Dame, attire alors nombre de religieuses de nobles familles
               dauphinoises.
             </p>
-          </section>
-          <section className="sm:mx-8 md:mx-4 lg:mx-32 my-8">
-            <h2 className="text-2xl font-bold sm:mx-10 md:mx-4 lg:mx-32 mb-4 underline">
-              Un peu d'histoire
-            </h2>
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4 font-bold italic">
-              L'ancien Régime
-            </p>
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4">
+          
+          <div className="my-8">
+          <h2 className="text-2xl font-bold text-center sm:text-left mb-4 underline">
+            Un peu d'histoire
+          </h2>
+          <p className="text-lg font-bold italic mb-4 text-center sm:text-left">
+            L'ancien Régime
+          </p>
+          <p className="text-base leading-relaxed mb-4 text-justify sm:text-left">
+
               Dès sa fondation, l'abbaye s'enrichit de nombreuses donations de
               la part des dauphins et des seigneurs voisins. Ces donations sont
               confirmées par une bulle du pape Adrien IV qui prend l'abbaye sous
@@ -104,11 +105,10 @@ function App() {
               que des religieuses venant de l'abbaye des Ayes fondent le couvent
               des Bernardines de Sainte-Cécile a Grenoble en 1624.
             </p>
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4 font-bold italic">
-              La Révolution
-            </p>
-
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4">
+            <p className="text-lg font-bold italic mb-4 text-center sm:text-left">
+      La Révolution
+    </p>
+    <p className="text-base leading-relaxed mb-4 text-justify sm:text-left">
               Le 12 août 1790, le maire de Crolles informe les officiers
               municipaux que, selon le décret de l'assemblée nationale sur la
               vente des biens ecclésiastiques et nationaux, les biens de
@@ -125,18 +125,16 @@ function App() {
               département ; le logis est inscrit aux Monuments Historiques
               depuis 1990.
             </p>
-          </section>
-          <div className="lg:max-w-5xl md:max-w-2xl sm:max-w-1xl mx-auto sm:px-6 md:px-2 lg:px-6 py-8">
-            <section className="bg-gray-100 p-4 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold text-left text-black-600 underline mb-4">
-                Anecdotes
-              </h2>
-              <p className="text-left text-black-600 leading-relaxed">
+          <section className="bg-gray-100 p-6 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold text-center sm:text-left underline mb-4">
+              Anecdotes
+            </h2>
+            <p className="text-base leading-relaxed text-justify sm:text-left">
                 La légende raconte que Marguerite de Bourgogne lors d'un séjour
                 dans sa résidence aux Petites Roches, alors qu'elle priait, vit
                 un flambeau suspendu dans les airs se poser dans la vallée sur
                 les bords de l'Isère. Cette vision perçue comme un message divin
-                révéla l'endroit qu'elle cherchait pour fonder un couvent.{" "}
+                révéla l'endroit qu'elle cherchait pour fonder un couvent.
                 <br />
                 <br />
                 Le nom des Ayes vient du lieu, bordé de buissons et de ronces,
@@ -148,12 +146,11 @@ function App() {
           <div>
             <ComponentAbbaye />
           </div>
-          <section className="sm:mx-8 md:mx-4 lg:mx-32 my-8">
-            <h2 className="text-2xl font-bold sm:mx-10 md:mx-4 lg:mx-32 mb-4 underline">
+            <h2 className="text-2xl font-bold mb-4 underline">
               Bibliographie / Pour aller + loin
             </h2>
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4">
-              <span className="italic first-line ">
+            <p className="mb-6 ">
+              <span className="italic first-line">
                 Trois abbayes de cisterciennes en Dauphiné du XIIe siècle à la
                 Révolution,
               </span>
@@ -169,8 +166,6 @@ function App() {
             </p>
           </section>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

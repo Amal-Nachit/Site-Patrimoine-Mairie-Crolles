@@ -89,8 +89,6 @@ function App() {
             <ComponentSepultures />
           </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

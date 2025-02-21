@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./../../globals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAnglesDown } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 const Card = ({ items }) => {
   const [showAll, setShowAll] = useState(false);
@@ -28,17 +28,13 @@ const Card = ({ items }) => {
               />
             </a>
             <div className="px-4 py-2">
-              <h2 className="text-lg font-semibold mb-2 text-center">
+            <a
+                href={val.url}
+                className="block text-sky-600 hover:underline text-sm font-semibold">
+              <h2 className="text-lg my-2 text-center">
                 {val.name}
               </h2>
-            </div>
-            <div className="px-4 py-2 text-center border-t border-gray-200">
-              <a
-                href={val.url}
-                className="block text-blue-500 hover:text-blue-800 hover:underline text-sm font-semibold"
-              >
-                Voir plus
-              </a>
+            </a>
             </div>
           </div>
         ))}
@@ -49,7 +45,7 @@ const Card = ({ items }) => {
             className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             onClick={() => setShowAll(true)}
           >
-            <FontAwesomeIcon icon={faAnglesDown} className="text-sm" />{" "}
+            <FontAwesomeIcon icon={faAngleDown} className="text-sm mr-2" />
             Afficher tout
           </button>
         )}

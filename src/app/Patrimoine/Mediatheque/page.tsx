@@ -89,8 +89,6 @@ function App() {
             <ComponentMediatheque />
           </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

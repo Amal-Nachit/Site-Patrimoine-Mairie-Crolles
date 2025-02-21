@@ -2,10 +2,11 @@
 
 import { faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export function ComponentAbbaye() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const slides = [
     {
       src: "/images/Abbaye-des-Ayes/2.jpg",
@@ -49,14 +50,21 @@ export function ComponentAbbaye() {
     },
   ];
 
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 3000);
+    if (!isPaused) {
+      timerRef.current = setInterval(() => {
+        setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
+      }, 6000);
+    }
 
-
-    return () => clearInterval(timer);
-  }, []);
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [isPaused]);
 
   const handleNextClick = () => {
     setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
@@ -68,24 +76,37 @@ export function ComponentAbbaye() {
     );
   };
 
-  return (
-    <div className="flex justify-center items-center">
-      {/* Structure pour une image avec ses boutons */}
-      <div className="relative w-1/2 sm:w-1/2 xl:w-1/2 2xl:w-1/2">
-        {/* Conteneur pour l'image centrée */}
-        <div className="flex flex-col justify-center h-full">
-          <figcaption className="text-center text-l italic mb-2  ">{slides[currentSlide].legend}</figcaption>
-          {/* Image avec taille fixe */}
-          <img
-            src={slides[currentSlide].src}
-            alt={slides[currentSlide].alt}
-            className="h-[400px] w-[800px] object-contain rounded-lg mb-2"
-          />
-        </div>
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+  };
 
-        {/* Conteneur pour les boutons centrés en bas */}
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
+
+  return (
+    <div className="flex justify-center items-center mb-6">
+      <div className="relative w-1/2 sm:w-1/2 xl:w-1/2 2xl:w-1/2">
+        <div className="flex flex-col justify-center h-full">
+          <div
+            className="flex justify-center items-center h-full"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <img
+              src={slides[currentSlide].src}
+              alt={slides[currentSlide].alt}
+              className="h-[600px] w-[800px] object-contain mb-2"
+            />
+          </div>
+          <figcaption className="text-center text-l italic mb-2">
+            {slides[currentSlide].legend}
+          </figcaption>
+        </div>
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex justify-center space-x-4 pb-10">
-          {/* Bouton précédent */}
           <button
             onClick={handlePrevClick}
             className="bg-gray-200 hover:bg-green-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out"
@@ -93,7 +114,6 @@ export function ComponentAbbaye() {
             <FontAwesomeIcon icon={faAnglesLeft} />
           </button>
 
-          {/* Bouton suivant */}
           <button
             onClick={handleNextClick}
             className="bg-gray-200 hover:bg-green-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out"
@@ -105,5 +125,3 @@ export function ComponentAbbaye() {
     </div>
   );
 }
-
-

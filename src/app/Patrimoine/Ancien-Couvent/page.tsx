@@ -57,25 +57,25 @@ function App() {
               className={`w-[80%] sm:w-[90%] lg:w-2/5 object-contain rounded-lg`}
             />
           </div>
-          <section className="sm:mx-8 md:mx-4 lg:mx-32 my-8">
-            <h2 className="text-2xl font-bold sm:mx-10 md:mx-4 lg:mx-32 mb-4 underline">
+          <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h2 className="text-2xl font-bold mb-4 underline">
               Un peu d'histoire
             </h2>
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4 font-bold italic">
+            <p className="mb-4 font-bold italic">
               Au XIXème siècle
             </p>
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4">
+            <p className="mb-4">
               En 1820, cet ensemble patrimonial abrite le couvent de Crolles,
               fondé par Alexandrine Paturel. Il appartient, à partir de 1866,
               aux sœurs de la Providence de Corenc. En 1850, la loi rend
               obligatoire l’éducation des filles ; une classe est alors créée
               dans le couvent.
             </p>
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4 font-bold italic">
+            <p className="mb-4 font-bold italic">
               Pendant les guerres mondiales
             </p>
 
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4">
+            <p className="mb-4">
               Il devient par la suite la résidence de la famille Vincent-Byland.
               Dès le mois d’août 1914, un hôpital temporaire de 60 lits, destiné
               à accueillir et soigner les soldats blessés, y est établi. Eugène
@@ -94,11 +94,11 @@ function App() {
               colonies de vacances. C’est en 2001 que la Maison Familiale quitte
               l’Institut rural pour des locaux neufs, rue Emmanuel Mounier.
             </p>
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4 font-bold italic">
+            <p className="mb-4 font-bold italic">
               Aujourd'hui
             </p>
 
-            <p className="sm:mx-10 md:mx-4 lg:mx-32 mb-4">
+            <p className="mb-4">
               Depuis, l’ancien bâtiment a été réhabilité. Une nouvelle résidence
               intergénérationnelle a été construite dans son prolongement. Cet
               habitat porte le nom de « La Cotinière ». Quant aux anciens
@@ -110,8 +110,6 @@ function App() {
             <ComponentCouvent />
           </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

@@ -111,8 +111,6 @@ function App() {
             <ComponentGare />
           </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

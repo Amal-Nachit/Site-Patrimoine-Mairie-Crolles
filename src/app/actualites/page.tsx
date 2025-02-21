@@ -12,23 +12,30 @@ const Actualites = () => {
   const [actualitesList, setActualitesList] = useState<ActualiteProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showMore, setShowMore] = useState(false);
-
   const { push } = useRouter();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getAllActualites();
-        const sortedActualitesList = res.data.sort((a: { date: string | number | Date; }, b: { date: string | number | Date; }) =>
+  const fetchData = async () => {
+    try {
+      const res = await getAllActualites();
+      const sortedActualitesList = res.data.sort(
+        (a: { date: string | number | Date }, b: { date: string | number | Date }) =>
           new Date(a.date).getTime() > new Date(b.date).getTime() ? -1 : 1
-        );
-        setActualitesList(sortedActualitesList);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching actualites:", error);
-      }
-    };
+      );
+      setActualitesList(sortedActualitesList);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching actualites:", error);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
+
+    const intervalId = setInterval(() => {
+      fetchData(); 
+    }, 30000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const handleShowMore = () => {
@@ -37,10 +44,10 @@ const Actualites = () => {
 
   return (
     <main className="flex flex-col items-center justify-center my-12">
-        {actualitesList.length > 0 && (
+      {actualitesList.length > 0 && (
         <>
-          <h1 className="text-4xl font-bold text-gray-800 mb-10">
-            Toutes nos actualités
+          <h1 className="text-3xl sm:text-4xl md:text-2xl lg:text-4xl xl:text-4xl font-bold text-gray-800 my-8 pb-4">
+            Nos actualités autour du patrimoine
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-11/12 max-w-7xl mx-auto">
             {isLoading ? (
@@ -70,7 +77,7 @@ const Actualites = () => {
                       )}
                       <div className="py-6 px-4 flex-grow">
                         <h5
-                          className="mb-6 mt-4 text-2xl font-semibold cursor-pointer text-blue-800 hover:underline"
+                          className="mb-6 mt-4 text-2xl font-semibold cursor-pointer text-sky-600 hover:underline"
                           onClick={() =>
                             push(
                               `/actualites/details/${patrimoine_actualite.id}`
@@ -100,7 +107,7 @@ const Actualites = () => {
                       </div>
                       <div className="py-2 px-2 bg-blue-100">
                         <span className="text-gray-600 text-sm">
-                          {new Date(patrimoine_actualite.date).toLocaleDateString(
+                          {new Date(Date.parse(patrimoine_actualite.date)).toLocaleDateString(
                             "fr-FR",
                             {
                               day: "2-digit",
@@ -130,4 +137,3 @@ const Actualites = () => {
 };
 
 export default Actualites;
-

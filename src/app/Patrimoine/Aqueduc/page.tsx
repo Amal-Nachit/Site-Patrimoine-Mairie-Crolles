@@ -79,12 +79,8 @@ function App() {
               la place de la Liberté.
             </p>
           </section>
-          <div>
             <ComponentAqueduc />
-          </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

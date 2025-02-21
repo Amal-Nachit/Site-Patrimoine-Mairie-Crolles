@@ -125,8 +125,6 @@ function App() {
             <ComponentCimenterie />
           </div>
         </main>
-      </div>
-      <div>
         <Footer />
       </div>
     </>

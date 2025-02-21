@@ -2,10 +2,13 @@
 
 import { faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 export function ComponentVitraux() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
   const slides = [
     {
       src: "/images/Vitraux/1.jpg",
@@ -69,18 +72,20 @@ export function ComponentVitraux() {
     },
     {
       src: "/images/Vitraux/12.jpg",
-      alt: "    Heureux ceux qui ont le cœur pur, car ils verront Dieu  ",
-      legend: "    Heureux ceux qui ont le cœur pur, car ils verront Dieu  ",
+      alt: "Heureux ceux qui ont le cœur pur, car ils verront Dieu",
+      legend: "Heureux ceux qui ont le cœur pur, car ils verront Dieu",
     },
     {
       src: "/images/Vitraux/13.jpg",
-      alt: "    Heureux ceux qui créent la paix autour d’eux, car Dieu les appellera ses fils  ",
-      legend: "    Heureux ceux qui créent la paix autour d’eux, car Dieu les appellera ses fils  ",
+      alt: "Heureux ceux qui créent la paix autour d’eux, car Dieu les appellera ses fils",
+      legend:
+        "Heureux ceux qui créent la paix autour d’eux, car Dieu les appellera ses fils",
     },
     {
       src: "/images/Vitraux/14.jpg",
-      alt: "    Heureux ceux qu’on persécute parce qu’ils agissent comme Dieu le demande, car le royaume des cieux est à eux ! ",
-      legend: "    Heureux ceux qu’on persécute parce qu’ils agissent comme Dieu le demande, car le royaume des cieux est à eux ! ",
+      alt: "Heureux ceux qu’on persécute parce qu’ils agissent comme Dieu le demande, car le royaume des cieux est à eux !",
+      legend:
+        "Heureux ceux qu’on persécute parce qu’ils agissent comme Dieu le demande, car le royaume des cieux est à eux !",
     },
     {
       src: "/images/Vitraux/15.jpg",
@@ -95,13 +100,21 @@ export function ComponentVitraux() {
     },
   ];
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 4000);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-    return () => clearInterval(timer);
-  }, []);
+  useEffect(() => {
+    if (!isPaused) {
+      timerRef.current = setInterval(() => {
+        setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
+      }, 6000);
+    }
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [isPaused]);
 
   const handleNextClick = () => {
     setCurrentSlide((prevIndex) => (prevIndex + 1) % slides.length);
@@ -113,27 +126,42 @@ export function ComponentVitraux() {
     );
   };
 
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
+
   return (
     <div className="flex justify-center items-center">
-      {/* Structure pour une image avec ses boutons */}
       <div className="relative w-1/2 sm:w-1/2 xl:w-1/2 2xl:w-1/2">
-        {/* Conteneur pour l'image centrée */}
-        <div className="flex flex-col justify-center h-full rounded-xl">
-          <img
-            src={slides[currentSlide].src}
-            alt={slides[currentSlide].alt}
-            className="h-[600px] w-[1600px] object-contain rounded-xl mb-2"
-          />
-          <figcaption className="absolute bottom-8 left-0 right-0 text-center bg-transparent">
+        <div
+          className="flex flex-col justify-center h-full rounded-xl"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.5 }}
+          >
+            <img
+              src={slides[currentSlide].src}
+              alt={slides[currentSlide].alt}
+              className="h-[600px] w-[1600px] object-contain rounded-xl mb-2"
+            />
+          </motion.div>
+          <figcaption className="absolute bottom-16 left-0 right-0 text-center bg-transparent">
             <div className="bg-zinc-800/70 text-white p-2">
               {slides[currentSlide].legend}
             </div>
           </figcaption>
-          {/* Image avec taille fixe */}
         </div>
-        {/* Conteneur pour les boutons centrés en bas */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex justify-center space-x-4 pb-10">
-          {/* Bouton précédent */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex justify-center space-x-4">
           <button
             onClick={handlePrevClick}
             className="bg-gray-200 hover:bg-green-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out"
@@ -141,7 +169,6 @@ export function ComponentVitraux() {
             <FontAwesomeIcon icon={faAnglesLeft} />
           </button>
 
-          {/* Bouton suivant */}
           <button
             onClick={handleNextClick}
             className="bg-gray-200 hover:bg-green-100 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-100 transition duration-150 ease-in-out"
@@ -153,4 +180,3 @@ export function ComponentVitraux() {
     </div>
   );
 }
-
